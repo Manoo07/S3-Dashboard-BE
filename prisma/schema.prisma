@@ -1,0 +1,24 @@
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  createdAt DateTime @default(now())
+  files     File[]
+}
+
+model File {
+  id          Int      @id @default(autoincrement())
+  filename    String
+  uploadDate  DateTime @default(now())
+  downloadCount Int    @default(0)
+  userId      Int
+  user        User     @relation(fields: [userId], references: [id])
+}
