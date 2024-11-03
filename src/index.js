@@ -30,12 +30,12 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Public route
-app.get('/', (req, res) => {
-    res.send('<a href="/auth/google">Login With Google</a>');
-});
+// app.get('/', (req, res) => {
+//     res.send('<a href="/auth/google">Login With Google</a>');
+// });
 
-// Use authRoutes for all auth-related endpoints
-app.use(authRoutes);
+// // Use authRoutes for all auth-related endpoints
+// app.use(authRoutes);
 
 app.post('/upload', upload.single('file'), uploadFile);
 app.get('/download/:fileId', downloadFile);
